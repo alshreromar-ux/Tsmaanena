@@ -1,0 +1,76 @@
+package com.example.ui.theme
+
+import android.os.Build
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.material3.lightColorScheme
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+
+private val DarkColorScheme = darkColorScheme(
+    primary = GoldBase,
+    onPrimary = Color(0xFF1F1400),
+    primaryContainer = EmeraldPrimaryDark,
+    onPrimaryContainer = GoldLight,
+    secondary = EmeraldVibrant,
+    onSecondary = Color.White,
+    secondaryContainer = NightPineCardVariant,
+    onSecondaryContainer = GoldAura,
+    tertiary = GoldRadiant,
+    onTertiary = Color(0xFF2E1900),
+    background = NightPineBg,
+    onBackground = NightTextPrimary,
+    surface = NightPineSurface,
+    onSurface = NightTextPrimary,
+    surfaceVariant = NightPineCard,
+    onSurfaceVariant = NightTextSecondary,
+    outline = Color(0xFF274335),
+    outlineVariant = Color(0xFF1A3327)
+)
+
+private val LightColorScheme = lightColorScheme(
+    primary = EmeraldPrimary,
+    onPrimary = Color.White,
+    primaryContainer = EmeraldSoftBg,
+    onPrimaryContainer = EmeraldDeepDark,
+    secondary = GoldChampagne,
+    onSecondary = Color.White,
+    secondaryContainer = GoldSoftBg,
+    onSecondaryContainer = GoldDeep,
+    tertiary = EmeraldVibrant,
+    onTertiary = Color.White,
+    background = WarmAlabasterBg,
+    onBackground = TextCharcoal,
+    surface = WarmCardSurface,
+    onSurface = TextCharcoal,
+    surfaceVariant = WarmCardVariant,
+    onSurfaceVariant = TextSecondary,
+    outline = Color(0xFFD6E2DB),
+    outlineVariant = Color(0xFFE8EFEA)
+)
+
+@Composable
+fun MyApplicationTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    dynamicColor: Boolean = false, // Keep consistent luxury Islamic branding
+    content: @Composable () -> Unit
+) {
+    val colorScheme = when {
+        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+            val context = LocalContext.current
+            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+        }
+        darkTheme -> DarkColorScheme
+        else -> LightColorScheme
+    }
+
+    MaterialTheme(
+        colorScheme = colorScheme,
+        typography = Typography,
+        content = content
+    )
+}

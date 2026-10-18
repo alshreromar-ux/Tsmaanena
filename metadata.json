@@ -1,0 +1,6 @@
+{
+  "name": "طمأنينة",
+  "description": "تطبيق إسلامي شامل للتذكير بذكر الله، الصلاة على النبي ﷺ، تتبع الصلوات، قصص الأنبياء والصحابة، والقرآن الكريم",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
